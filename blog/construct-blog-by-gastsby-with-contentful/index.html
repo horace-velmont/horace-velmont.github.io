@@ -3,7 +3,10 @@
 //images.ctfassets.net/0mzc29zul3qn/4NzwDSDlGECGIiokKomsyI/4518873f2bc67b21004373f358c34e53/website-rebuilt-in-gatsbyjs.png?w=800&h=435&q=50&bg=rgb%3A000000 800w" sizes="(max-width: 1180px) 100vw, 1180px" /><img loading="lazy" sizes="(max-width: 1180px) 100vw, 1180px" srcset="//images.ctfassets.net/0mzc29zul3qn/4NzwDSDlGECGIiokKomsyI/4518873f2bc67b21004373f358c34e53/website-rebuilt-in-gatsbyjs.png?w=295&h=160&q=50&bg=rgb%3A000000 295w,
 //images.ctfassets.net/0mzc29zul3qn/4NzwDSDlGECGIiokKomsyI/4518873f2bc67b21004373f358c34e53/website-rebuilt-in-gatsbyjs.png?w=590&h=321&q=50&bg=rgb%3A000000 590w,
 //images.ctfassets.net/0mzc29zul3qn/4NzwDSDlGECGIiokKomsyI/4518873f2bc67b21004373f358c34e53/website-rebuilt-in-gatsbyjs.png?w=800&h=435&q=50&bg=rgb%3A000000 800w" src="//images.ctfassets.net/0mzc29zul3qn/4NzwDSDlGECGIiokKomsyI/4518873f2bc67b21004373f358c34e53/website-rebuilt-in-gatsbyjs.png?w=1180&q=50&bg=rgb%3A000000" alt="GatsbyJS + Contentful로 정적 블로그 구축하기" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></div><div class="wrapper"><h1 class="section-headline">GatsbyJS + Contentful로 정적 블로그 구축하기</h1><p style="display:block">March 15th, 2020</p><div><h2>개요</h2>
-<p>줄곧 정적 블로그를 만들겠다고 벼르고 있었으나 생각보다 쉽게 개념들을 익히기가 어려웠다. gatsby.js를 사용하기로 마음먹은지도 꽤 오래었고 프로젝트도 파는데 성공했지만 갑자기 contentful이라는 부가 기능에 꽂혀서 이걸 적용하기 위해 다시 삽질을 반복.. 기존 gatsby 프로젝트에 적용하려니 쉽지가 않았다. 그래서 일단 contentful을 포함한 gatsby starter을 설치해서 하나하나 익혀보자 하는 마음으로 starter를 설치했는데 생각보다 맘에 들잖아? 그냥 이걸 내 블로그로 쓰기로 했다-_-ㅋㅋ 오랫동안 삽질한 것에 비하면 구축 자체는 비교적 간단하게 되었다. 좀 허망하긴 하나 그간 개념을 단련해온 것에 대한 보답이라 생각하고 다른 사람들에게도 간단하게 구축할 수 있는 방법을 공유하려 한다.</p>
+<p>줄곧 정적 블로그를 만들겠다고 벼르고 있었으나 생각보다 쉽게 개념들을 익히기가 어려웠다. gatsby.js를 사용하기로 마음먹은지도 꽤 오래었고 프로젝트도 파는데 성공했지만 갑자기 contentful이라는 부가 기능에 꽂혀서 이걸 적용하기 위해 다시 삽질을 반복하였다.</p>
+<p>기존 gatsby 프로젝트에 contentful 플러그인을 적용해 보려니 생각보다 쉽지가 않았다. 그래서 일단 contentful을 포함한 gatsby starter을 설치해서 하나하나 익혀보자 하는 마음으로 starter를 설치해보았다. 결과는 성공. 근데 생각보다 맘에 들잖아? </p>
+<p>연습삼아 만든 프로젝트를 그냥 이걸 내 블로그로 쓰기로 했다-_-ㅋㅋ 오랫동안 삽질한 것에 비하면 구축 자체는 비교적 간단하게 되었다. </p>
+<p>좀 허망하긴 하지만 그간 개념을 단련해온 것에 대한 보답이라 생각하고 다른 사람들에게도 간단하게 구축할 수 있는 방법을 공유하려 한다.</p>
 <p>우선 Gatsby.js + Contentful을 사용한 블로그 구축의 장점은 다음과 같다.</p>
 <h2>Gatsby.js와 Contentful의 장단점</h2>
 <ul>
@@ -35,14 +38,16 @@ npm install -g gatsby
 // gatsby starter를 이용하여 프로젝트를 생성한다. 프로젝트명 형식을 반드시 지켜주자.
 gatsby new 깃허브아이디.github.io https://github.com/contentful-userland/gatsby-contentful-starter
 </code></pre>
-<p>잠시 터미널을 떠나 contentful.com 으로 접속후 회원가입한 뒤 새 공간을 생성한다. Settings > API_KEYS로 들어가서 접속 토큰 및 관리 토큰을 생성해 준다. 다시 터미널로 돌아가자!</p>
+<p>잠시 터미널을 떠나 contentful.com 으로 접속후 회원가입한 뒤 새 공간을 생성한다. </p>
+<p>Settings > API_KEYS로 들어가서 접속 토큰 및 관리 토큰을 생성해 준다. 다시 터미널로 돌아가자!</p>
 <pre><code>cd 프로젝트_이름
 // 아래 명령어를 입력한후 발급한 관리 토큰 및 space id, 접속 토큰을 입력한다
 yarn run setup
 // 잘 뜨는지 테스트해보자
 yarn run dev
 </code></pre>
-<p>localhost:8000으로 접속했을 때 아래처럼 잘 뜬다면 성공한 것이다! 이제 당신의 정적 블로그가 만들어졌다. (첫번째 게시글은 필자가 내용을 수정한 것임)
+<p>localhost:8000으로 접속했을 때 아래처럼 잘 뜬다면 성공한 것이다! </p>
+<p>이제 당신의 정적 블로그가 만들어졌다. (첫번째 게시글은 필자가 내용을 수정한 것임)
 <img src="//images.ctfassets.net/0mzc29zul3qn/NrYz8kVu2Um6AfXnXoxqV/11fde99439d255d40e3c52ded36b1fb0/image.png" alt="gatsby-localhost-1"></p>
 <p>필자의 첫번째 게시글 처럼 내용을 수정해 보고 싶다면 contentful.com으로 돌아가서 Content 탭을 누른뒤 원하는 내용을 수정해보자.</p>
 <p>다시 yarn run dev를 실행해서 위의 필자의 스크린샷 처럼 변경사항이 잘 반영되는지 테스트.</p>
@@ -50,7 +55,10 @@ yarn run dev
 </code></pre>
 <p>간단하게 로컬상에서 정적 블로그를 생성할 수 있게 되었다. 이제 github에 배포해보자.</p>
 <h2>Github에 배포하기</h2>
-<p>깃허브에서 새 Repository를 생성한다. 본인 Organization에서 깃허브아이디.github.io 형식(필수)으로 저장소 이름을 입력해준다. 저 형식으로만 정적 사이트를 깃허브에서 호스팅해주는 것 같다. 저 방식 말고도 "깃허브아이디.github.io/서브네임" 형식으로도 구축이 가능하긴 하다고 한다.</p>
+<p>깃허브에서 새 Repository를 생성한다. </p>
+<p>본인 Organization에서 깃허브아이디.github.io 형식(필수)으로 저장소 이름을 입력해준다. </p>
+<p>위 형식으로만 정적 사이트를 깃허브에서 호스팅해주는 것 같다. </p>
+<p>저 방식 말고도 "깃허브아이디.github.io/서브네임" 형식으로도 구축이 가능하긴 하다고 한다.</p>
 <p><img src="//images.ctfassets.net/0mzc29zul3qn/1VdfkKJ109HJ2BTenGnYK1/38cf270ad581c0145d42083d92b3c058/image.png" alt="github deploy 1"></p>
 <p>이제 배포를 해보자. 터미널로 이동한다</p>
 <pre><code>cd 프로젝트_이름
@@ -66,8 +74,10 @@ git remote add origin 깃허브아이디.github.io
 
 // 현재까지의 변경사항을 develop 브랜치로 푸시한다 (master가 아님)
 </code></pre>
-<p>develop에 푸시하는 이유는 우리의 블로그 빌드 파일이 master 브랜치로 push될 예정이기 때문이다. 꼭 지금 푸시해두어 배포후 작업한 사항이 날라가는 아픔을 겪지 않도록 하자. 터미널로 복귀하자.</p>
+<p>develop에 푸시하는 이유는 우리의 블로그 빌드 파일이 master 브랜치로 push될 예정이기 때문이다. </p>
+<p>터미널로 복귀하자.</p>
 <pre><code>// 아래 명령어 실행 후 깃허브 정보 입력
 yarn run deploy
 </code></pre>
-<p>이렇게 원격 서버에 배포하는 방법까지 알아보았다. "깃허브아이디.github.io"로 접속해서 잘 배포된 여러분의 블로그를 확인하자.</p></div></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/blog/construct-blog-by-gastsby-with-contentful/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-06b6f8bd3a19546f8b72.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-672e1cd6546bd9ec691a.js"],"component---src-pages-blog-js":["/component---src-pages-blog-js-cae799b6e2c34d448fd7.js"],"component---src-pages-index-js":["/component---src-pages-index-js-a7d5bbffbabc9213522d.js"]};/*]]>*/</script><script src="/component---src-templates-blog-post-js-672e1cd6546bd9ec691a.js" async=""></script><script src="/commons-dd04ca9895403c0b6c0d.js" async=""></script><script src="/styles-79c6491002273c1036b2.js" async=""></script><script src="/app-06b6f8bd3a19546f8b72.js" async=""></script><script src="/webpack-runtime-8faf97afe1f706a1f8f5.js" async=""></script></body></html>
+<p>이렇게 원격 서버에 배포하는 방법까지 알아보았다. </p>
+<p>"깃허브아이디.github.io"로 접속해서 잘 배포된 여러분의 블로그를 확인하자! 끝!</p></div></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/blog/construct-blog-by-gastsby-with-contentful/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-06b6f8bd3a19546f8b72.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-672e1cd6546bd9ec691a.js"],"component---src-pages-blog-js":["/component---src-pages-blog-js-cae799b6e2c34d448fd7.js"],"component---src-pages-index-js":["/component---src-pages-index-js-a7d5bbffbabc9213522d.js"]};/*]]>*/</script><script src="/component---src-templates-blog-post-js-672e1cd6546bd9ec691a.js" async=""></script><script src="/commons-dd04ca9895403c0b6c0d.js" async=""></script><script src="/styles-79c6491002273c1036b2.js" async=""></script><script src="/app-06b6f8bd3a19546f8b72.js" async=""></script><script src="/webpack-runtime-8faf97afe1f706a1f8f5.js" async=""></script></body></html>
