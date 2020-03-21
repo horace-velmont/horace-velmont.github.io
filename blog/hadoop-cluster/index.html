@@ -8,21 +8,132 @@
 //images.ctfassets.net/0mzc29zul3qn/6Od9v3wzLOysiMum0Wkmme/92ad3bafb97eccdceafb5183dd4a7f72/cameron-kirby-88711.jpg?w=1180&h=787&q=50&bg=rgb%3A000000 1180w,
 //images.ctfassets.net/0mzc29zul3qn/6Od9v3wzLOysiMum0Wkmme/92ad3bafb97eccdceafb5183dd4a7f72/cameron-kirby-88711.jpg?w=1770&h=1180&q=50&bg=rgb%3A000000 1770w,
 //images.ctfassets.net/0mzc29zul3qn/6Od9v3wzLOysiMum0Wkmme/92ad3bafb97eccdceafb5183dd4a7f72/cameron-kirby-88711.jpg?w=2360&h=1573&q=50&bg=rgb%3A000000 2360w,
-//images.ctfassets.net/0mzc29zul3qn/6Od9v3wzLOysiMum0Wkmme/92ad3bafb97eccdceafb5183dd4a7f72/cameron-kirby-88711.jpg?w=3000&h=2000&q=50&bg=rgb%3A000000 3000w" src="//images.ctfassets.net/0mzc29zul3qn/6Od9v3wzLOysiMum0Wkmme/92ad3bafb97eccdceafb5183dd4a7f72/cameron-kirby-88711.jpg?w=1180&q=50&bg=rgb%3A000000" alt="Hadoop cluster 구축하기 (작성 중)" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></div><div class="wrapper"><h1 class="section-headline">Hadoop cluster 구축하기 (작성 중)</h1><p style="display:block">March 21st, 2020</p><div><p>centos7 이미지위에 Hadoop cluster를 올리는 실습이다. 1개 PC에 여러 노드를 올려서 각 노드간 통신이 원활하게 이루어지는지 파악해보려고 한다.</p>
-<h2>centos7 설치</h2>
-<p>리눅스가 아닌 PC에서 centos7 OS를 설치하는 방법은 2가지가 있다.</p>
-<ol>
-<li>virtual box (vm) 상에서 OS이미지를 생성하여 설치</li>
-<li>docker 이미지로 받아오기</li>
-</ol>
-<p>두 방식이 어떻게 다른지는 이 글을 참고해보자. </p>
+//images.ctfassets.net/0mzc29zul3qn/6Od9v3wzLOysiMum0Wkmme/92ad3bafb97eccdceafb5183dd4a7f72/cameron-kirby-88711.jpg?w=3000&h=2000&q=50&bg=rgb%3A000000 3000w" src="//images.ctfassets.net/0mzc29zul3qn/6Od9v3wzLOysiMum0Wkmme/92ad3bafb97eccdceafb5183dd4a7f72/cameron-kirby-88711.jpg?w=1180&q=50&bg=rgb%3A000000" alt="Hadoop cluster 구축하기 (작성 중)" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></div><div class="wrapper"><h1 class="section-headline">Hadoop cluster 구축하기 (작성 중)</h1><p style="display:block">March 21st, 2020</p><div><h1>개요</h1>
+<p>centos 운영체제 위에 Hadoop cluster를 올리는 실습이다. 1개 PC에 여러 노드를 올려서 각 노드간 통신이 원활하게 이루어지는지 파악해보려고 한다.</p>
+<p>궁극적으로는 아래 저장소의 하둡 클러스터를 가상 centos 운영체제에 올리는 것이 목표이다</p>
 <ul>
-<li><a href="https://medium.com/@darkrasid/docker%EC%99%80-vm-d95d60e56fdd">https://medium.com/@darkrasid/docker%EC%99%80-vm-d95d60e56fdd</a></li>
+<li><a href="https://github.com/kiwenlau/hadoop-cluster-docker">https://github.com/kiwenlau/hadoop-cluster-docker</a></li>
 </ul>
-<p>윈도우의 경우는 2번처럼 docker for windows를 사용하여 설치할 경우 하이퍼바이저 기능을 꺼야하므로 다른 vm 애플리케이션을 사용할 수 없다는 단점이 있다. 따라서 1번의 방법을 추천한다. 필자의 경우는 mac환경이고 docker 사용에 크게 제약이 있지 않기에 굳이 무겁게 virtubox box를 사용할 이유는 없어 보여서 1번 방식을 택했다.</p>
-<p>우선 centos7 도커 이미지를 받는다</p>
-<pre><code>docker pull centos:centos7.7.1908
+<h1>설치</h1>
+<h2>centos 설치</h2>
+<p>아래 링크를 참조하여 VirtualBox에 Centos 이미지를 설치하자</p>
+<ul>
+<li>
+<p>설치 : </p>
+<ul>
+<li><a href="https://extrememanual.net/8513">https://extrememanual.net/8513</a></li>
+<li><a href="https://mimel.tistory.com/entry/CentOS8-for-VirtualBox">https://mimel.tistory.com/entry/CentOS8-for-VirtualBox</a></li>
+</ul>
+</li>
+<li>
+<p>네트워크 설정 : </p>
+<ul>
+<li><a href="https://extrememanual.net/8500">https://extrememanual.net/8500</a></li>
+</ul>
+</li>
+</ul>
+<h2>centos에 docker 설치</h2>
+<p>설치를 완료했으면 운영체제로 접근하여 docker를 설치햅자.
+아래 링크를 참고하여 진행하였다</p>
+<ul>
+<li><a href="https://niceman.tistory.com/36">https://niceman.tistory.com/36</a></li>
+<li><a href="https://www.linuxtechi.com/install-docker-ce-centos-8-rhel-8/">https://www.linuxtechi.com/install-docker-ce-centos-8-rhel-8/</a></li>
+</ul>
+<p>일단 가상 OS 내에서 도커를 설치한다.</p>
+<p>centos7 은 다음처럼 설치한다.</p>
+<pre><code># yum 업데이트
+yum -y update
+# 도커 및 도커 레지스트리 설치
+yum -y install docker docker-registry
+# docker service 부팅시 시작하도록 등록
+systemctl enable docker.service 
+# docker service 시작
+systemctl start docker.service
 </code></pre>
-<p>도커 이미지를 백그라운드 방식으로 실행한다.</p>
-<pre><code>docker run -d --name centos-hadoop centos:centos7.7.1908
-</code></pre></div></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/blog/hadoop-cluster/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-06b6f8bd3a19546f8b72.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-672e1cd6546bd9ec691a.js"],"component---src-pages-blog-js":["/component---src-pages-blog-js-cae799b6e2c34d448fd7.js"],"component---src-pages-index-js":["/component---src-pages-index-js-a7d5bbffbabc9213522d.js"]};/*]]>*/</script><script src="/component---src-templates-blog-post-js-672e1cd6546bd9ec691a.js" async=""></script><script src="/commons-dd04ca9895403c0b6c0d.js" async=""></script><script src="/styles-79c6491002273c1036b2.js" async=""></script><script src="/app-06b6f8bd3a19546f8b72.js" async=""></script><script src="/webpack-runtime-8faf97afe1f706a1f8f5.js" async=""></script></body></html>
+<p>centos8 인 경우는 다음처럼 설치한다.</p>
+<pre><code>dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+dnf install docker-ce --nobest -y
+# docker service 부팅시 시작하도록 등록
+systemctl enable docker
+# docker service 시작
+systemctl start docker
+</code></pre>
+<p>docker 명령어를 입력해서 정상 설치되었는지 확인해보자</p>
+<pre><code>[root@localhost ~]# docker --version
+Docker version 19.03.8, build afacb8b
+</code></pre>
+<h2>centos에 하둡 클러스터 설치</h2>
+<p>아래 저장소를 이용하였고 저장소의 README문서를 참조하였다.</p>
+<ul>
+<li><a href="https://github.com/kiwenlau/hadoop-cluster-docker">https://github.com/kiwenlau/hadoop-cluster-docker</a></li>
+</ul>
+<p>근데 centos 이미지에 git이 없다.. 설치하자-_-;;</p>
+<pre><code># centos7
+yum -y install git
+# centos8
+dnf -y install git
+</code></pre>
+<p>이제 저장소를 클론받자. 필자는 /home 폴더에 받았다.</p>
+<pre><code>cd /home
+git clone https://github.com/kiwenlau/hadoop-cluster-docker
+</code></pre>
+<p>하둡 이미지를 받아주자</p>
+<pre><code>docker pull kiwenlau/hadoop:1.0
+</code></pre>
+<p>하둡 끼리 통신이 가능하도록 브리지 네트워크를 생성하자</p>
+<pre><code>docker network create --driver=bridge hadoop
+</code></pre>
+<p>클러스터 컨테이너를 시작해보자</p>
+<pre><code>cd hadoop-cluster-docker
+./start-container.sh
+------------------------------
+start hadoop-master container...
+start hadoop-slave1 container...
+start hadoop-slave2 container...
+root@hadoop-master:~# 
+</code></pre>
+<p>1개의 마스터와 2개의 슬레이브가 올라오고 나서 hadoop-master 노드로 진입한 것을 확인할 수 있다. 예제를 실행해보자.</p>
+<pre><code># 하둡 실행
+./start-hadoop.sh
+----------------------------
+
+Starting namenodes on [hadoop-master]
+hadoop-master: Warning: Permanently added 'hadoop-master,172.18.0.2' (ECDSA) to the list of known hosts.
+hadoop-master: namenode running as process 177. Stop it first.
+hadoop-slave2: Warning: Permanently added 'hadoop-slave2,172.18.0.4' (ECDSA) to the list of known hosts.
+hadoop-slave1: Warning: Permanently added 'hadoop-slave1,172.18.0.3' (ECDSA) to the list of known hosts.
+hadoop-slave1: starting datanode, logging to /usr/local/hadoop/logs/hadoop-root-datanode-hadoop-slave1.out
+hadoop-slave2: starting datanode, logging to /usr/local/hadoop/logs/hadoop-root-datanode-hadoop-slave2.out
+Starting secondary namenodes [0.0.0.0]
+0.0.0.0: Warning: Permanently added '0.0.0.0' (ECDSA) to the list of known hosts.
+0.0.0.0: starting secondarynamenode, logging to /usr/local/hadoop/logs/hadoop-root-secondarynamenode-hadoop-master.out
+
+
+starting yarn daemons
+starting resourcemanager, logging to /usr/local/hadoop/logs/yarn--resourcemanager-hadoop-master.out
+hadoop-slave2: Warning: Permanently added 'hadoop-slave2,172.18.0.4' (ECDSA) to the list of known hosts.
+hadoop-slave1: Warning: Permanently added 'hadoop-slave1,172.18.0.3' (ECDSA) to the list of known hosts.
+hadoop-slave2: starting nodemanager, logging to /usr/local/hadoop/logs/yarn-root-nodemanager-hadoop-slave2.out
+hadoop-slave1: starting nodemanager, logging to /usr/local/hadoop/logs/yarn-root-nodemanager-hadoop-slave1.out
+</code></pre>
+<p>혹시 slave와 연결시 no route to host 22 에러가 뜬다면 centos의 방화벽이 docker의 필터리스트를 제대로 처리해주지 못해서이다. 필자는 그냥 방화벽을 꺼버렸다. 링크 참조</p>
+<ul>
+<li><a href="https://linoxide.com/linux-how-to/stop-and-disable-firewall-on-centos/">https://linoxide.com/linux-how-to/stop-and-disable-firewall-on-centos/</a></li>
+</ul>
+<p>예제를 이어서 실행해보자</p>
+<pre><code>./run-wordcount.sh
+--------------------------------
+....
+
+input file1.txt:
+Hello Hadoop
+
+input file2.txt:
+Hello Docker
+
+wordcount output:
+Docker  1
+Hadoop  1
+Hello   2
+</code></pre>
+<p>일단 이렇게 하둡 마스터/슬레이브 노드 연결까지 성공했다. 깃허브 예제에는 resize 예제로 slave 노드 개수를 조절할 수 있으니 이것도 해볼 사람은 해보자.</p></div></div></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/blog/hadoop-cluster/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-06b6f8bd3a19546f8b72.js"],"component---src-templates-blog-post-js":["/component---src-templates-blog-post-js-672e1cd6546bd9ec691a.js"],"component---src-pages-blog-js":["/component---src-pages-blog-js-cae799b6e2c34d448fd7.js"],"component---src-pages-index-js":["/component---src-pages-index-js-a7d5bbffbabc9213522d.js"]};/*]]>*/</script><script src="/component---src-templates-blog-post-js-672e1cd6546bd9ec691a.js" async=""></script><script src="/commons-dd04ca9895403c0b6c0d.js" async=""></script><script src="/styles-79c6491002273c1036b2.js" async=""></script><script src="/app-06b6f8bd3a19546f8b72.js" async=""></script><script src="/webpack-runtime-8faf97afe1f706a1f8f5.js" async=""></script></body></html>
