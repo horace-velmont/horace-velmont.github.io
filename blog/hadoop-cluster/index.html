@@ -8,13 +8,12 @@
 //images.ctfassets.net/0mzc29zul3qn/6Od9v3wzLOysiMum0Wkmme/92ad3bafb97eccdceafb5183dd4a7f72/cameron-kirby-88711.jpg?w=1180&h=787&q=50&bg=rgb%3A000000 1180w,
 //images.ctfassets.net/0mzc29zul3qn/6Od9v3wzLOysiMum0Wkmme/92ad3bafb97eccdceafb5183dd4a7f72/cameron-kirby-88711.jpg?w=1770&h=1180&q=50&bg=rgb%3A000000 1770w,
 //images.ctfassets.net/0mzc29zul3qn/6Od9v3wzLOysiMum0Wkmme/92ad3bafb97eccdceafb5183dd4a7f72/cameron-kirby-88711.jpg?w=2360&h=1573&q=50&bg=rgb%3A000000 2360w,
-//images.ctfassets.net/0mzc29zul3qn/6Od9v3wzLOysiMum0Wkmme/92ad3bafb97eccdceafb5183dd4a7f72/cameron-kirby-88711.jpg?w=3000&h=2000&q=50&bg=rgb%3A000000 3000w" src="//images.ctfassets.net/0mzc29zul3qn/6Od9v3wzLOysiMum0Wkmme/92ad3bafb97eccdceafb5183dd4a7f72/cameron-kirby-88711.jpg?w=1180&q=50&bg=rgb%3A000000" alt="Centos에서 docker기반 Hadoop cluster 구축하기" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></div><div class="wrapper"><h1 class="section-headline">Centos에서 docker기반 Hadoop cluster 구축하기</h1><p style="display:block">March 21st, 2020</p><div><h1>개요</h1>
+//images.ctfassets.net/0mzc29zul3qn/6Od9v3wzLOysiMum0Wkmme/92ad3bafb97eccdceafb5183dd4a7f72/cameron-kirby-88711.jpg?w=3000&h=2000&q=50&bg=rgb%3A000000 3000w" src="//images.ctfassets.net/0mzc29zul3qn/6Od9v3wzLOysiMum0Wkmme/92ad3bafb97eccdceafb5183dd4a7f72/cameron-kirby-88711.jpg?w=1180&q=50&bg=rgb%3A000000" alt="Centos에서 docker기반 Hadoop cluster 구축하기" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div></div><div class="wrapper"><h1 class="section-headline">Centos에서 docker기반 Hadoop cluster 구축하기</h1><p style="display:block">March 21st, 2020</p><div><h2>개요</h2>
 <p>centos 운영체제 위에 Hadoop cluster를 올리는 실습이다. 1개 PC에 여러 노드를 올려서 각 노드간 통신이 원활하게 이루어지는지 파악해보려고 한다.</p>
 <p>궁극적으로는 아래 저장소의 하둡 클러스터를 가상 centos 운영체제에 올리는 것이 목표이다</p>
 <ul>
 <li><a href="https://github.com/kiwenlau/hadoop-cluster-docker">https://github.com/kiwenlau/hadoop-cluster-docker</a></li>
 </ul>
-<h1>설치</h1>
 <h2>centos 설치</h2>
 <p>아래 링크를 참조하여 VirtualBox에 Centos 이미지를 설치하자</p>
 <ul>
@@ -33,7 +32,7 @@
 </li>
 </ul>
 <h2>centos에 docker 설치</h2>
-<p>설치를 완료했으면 운영체제로 접근하여 docker를 설치햅자.
+<p>설치를 완료했으면 운영체제로 접근하여 docker를 설치 해보자.
 아래 링크를 참고하여 진행하였다</p>
 <ul>
 <li><a href="https://niceman.tistory.com/36">https://niceman.tistory.com/36</a></li>
